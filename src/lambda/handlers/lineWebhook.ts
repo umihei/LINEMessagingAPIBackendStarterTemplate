@@ -4,6 +4,6 @@ exports.handler = async function (event: any) {
     return {
         statusCode: 200,
         headers: { "Content-Type": "text/plain" },
-        body: "hello from cdk"
+        body: "hello from lambda"
     };
 };
