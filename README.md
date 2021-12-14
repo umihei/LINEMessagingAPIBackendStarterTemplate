@@ -1,14 +1,38 @@
-# Welcome to your CDK TypeScript project!
+# Simple LINE Bot Backend Template powered by AWS CDK
+This repo is AWS CDK Template for simple LINE bot backend.
+When you deploy this template, your bot will reply exactly same word that you send.
 
-This is a blank project for TypeScript development with CDK.
+## how to use
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+after cloning this repo, you should install npm libs.
+```
+npm install
+```
 
-## Useful commands
+In this repo, use ssm parameter to store LINE channel's access token and secret.
+before you do this, you should set up AWS CLI.
+```
+aws ssm put-parameter --type 'String' --name 'CHANNEL_ACCESSTOKEN' --value 'your channel's access token'
+aws ssm put-parameter --type 'String' --name 'CHANNEL_SECRET' --value 'your channel's secret'
+```
 
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `npm run test`    perform the jest unit tests
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
+and deploy resources.
+if you use cdk for the first time, run below command.
+```
+cdk bootstrap
+```
+
+after that, deploy.
+```
+cdk deploy
+```
+
+## Prerequisites
+
+You should prepare your own LINE channel via LINE Developers.
+And you need the channel's access token and secret.
+
+You should have AWS account, and admin permission.
+This repo will construct API Gateway and Lambda Function, and uses SSM parameter store.
+
+I checked this template works well with CDK v2.1.0.
