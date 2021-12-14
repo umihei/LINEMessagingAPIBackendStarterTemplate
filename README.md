@@ -4,7 +4,7 @@ When you deploy this template, your bot will reply exactly same word that you se
 
 ## Prerequisites
 
-cdk v2.1.0
+cdk v2.x.x or higher
 
 You should prepare your own LINE channel via LINE Developers.
 And you need the channel's access token and secret.
@@ -38,10 +38,10 @@ cdk deploy
 ```
 
 ## References
-- CDK
-https://cdkworkshop.com/  
-https://docs.aws.amazon.com/cdk/api/v2/
+### CDK  
+- https://cdkworkshop.com/  
+- https://docs.aws.amazon.com/cdk/api/v2/
 
-- LINE Bot
-https://qiita.com/nkjm/items/38808bbc97d6927837cd  
-https://dev.classmethod.jp/articles/lambda-line-bot-tutorial/
+### LINE Bot  
+- https://qiita.com/nkjm/items/38808bbc97d6927837cd  
+- https://dev.classmethod.jp/articles/lambda-line-bot-tutorial/
