@@ -38,8 +38,8 @@ This repo will construct API Gateway and Lambda Function, and uses SSM parameter
 I checked this template works well with CDK v2.1.0.
 
 ## References
-https://cdkworkshop.com/
+https://cdkworkshop.com/  
 https://docs.aws.amazon.com/cdk/api/v2/
 
-https://qiita.com/nkjm/items/38808bbc97d6927837cd
+https://qiita.com/nkjm/items/38808bbc97d6927837cd  
 https://dev.classmethod.jp/articles/lambda-line-bot-tutorial/
