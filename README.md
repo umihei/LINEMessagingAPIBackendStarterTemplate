@@ -2,6 +2,16 @@
 This repo is AWS CDK Template for simple LINE bot backend.
 When you deploy this template, your bot will reply exactly same word that you send.
 
+## Prerequisites
+
+cdk v2.1.0
+
+You should prepare your own LINE channel via LINE Developers.
+And you need the channel's access token and secret.
+
+You should have AWS account, and admin permission.
+This template will construct an API Gateway and a Lambda Function, and uses the SSM parameter store.
+
 ## how to use
 
 after cloning this repo, you should install npm libs.
@@ -27,19 +37,11 @@ after that, deploy.
 cdk deploy
 ```
 
-## Prerequisites
-
-You should prepare your own LINE channel via LINE Developers.
-And you need the channel's access token and secret.
-
-You should have AWS account, and admin permission.
-This repo will construct API Gateway and Lambda Function, and uses SSM parameter store.
-
-I checked this template works well with CDK v2.1.0.
-
 ## References
+- CDK
 https://cdkworkshop.com/  
 https://docs.aws.amazon.com/cdk/api/v2/
 
+- LINE Bot
 https://qiita.com/nkjm/items/38808bbc97d6927837cd  
 https://dev.classmethod.jp/articles/lambda-line-bot-tutorial/
