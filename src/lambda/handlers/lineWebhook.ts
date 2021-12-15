@@ -7,23 +7,30 @@ const client = new Client({
 });
 
 function isMessageEvent(arg: any): arg is MessageEvent {
-    return arg.MessageEvent !== undefined;
+    return arg.message !== undefined;
 }
 
 function isTextEventMessage(arg: any): arg is TextEventMessage {
-    return arg.TextEventMessage !== undefined;
+    return arg.text !== undefined;
 }
 
 exports.handler = async function (req: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
     console.log("request:", JSON.stringify(req));
     const events: WebhookRequestBody = JSON.parse(req.body!)
 
+    // eventがテキストメッセージのとき，応答する（やまびこ）
     for (let event of events.events) {
         if (isMessageEvent(event)) {
             if (isTextEventMessage(event.message)) {
                 await client.replyMessage(event.replyToken, {
                     type: 'text',
                     text: event.message.text
+                });
+            }
+            else {
+                await client.replyMessage(event.replyToken, {
+                    type: 'text',
+                    text: '対応してないよ'
                 });
             }
         }
