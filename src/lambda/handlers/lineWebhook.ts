@@ -1,6 +1,5 @@
 import { Client, TextEventMessage, MessageEvent, WebhookRequestBody } from '@line/bot-sdk';
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { is } from 'typescript-is';
 
 const client = new Client({
     channelAccessToken: process.env.CHANNEL_ACCESSTOKEN!,
@@ -12,17 +11,10 @@ exports.handler = async function (req: APIGatewayProxyEvent): Promise<APIGateway
     const events: WebhookRequestBody = JSON.parse(req.body!)
 
     for (let event of events.events) {
-
-        // text messageだけ返信（やまびこ）
-        if (is<MessageEvent>(event)) {
-            if (is<TextEventMessage>(event.message)) {
-                await client.replyMessage(event.replyToken, {
-                    type: 'text',
-                    text: event.message.text
-                });
-            }
-        }
-
+        await client.replyMessage((event as MessageEvent).replyToken, {
+            type: 'text',
+            text: ((event as MessageEvent).message as TextEventMessage).text
+        });
     }
 
     return {
