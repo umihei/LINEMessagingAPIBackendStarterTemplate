@@ -5,6 +5,7 @@ When you deploy this template, your bot will reply exactly same word that you se
 ## Prerequisites
 
 cdk v2.x.x or higher
+Nodejs
 
 You should prepare your own LINE channel via LINE Developers.
 And you need the channel's access token and secret.
