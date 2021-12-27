@@ -1,7 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Capture, Template } from 'aws-cdk-lib/assertions';
 import { LineWebhookStack } from '../lib/line_webhook-stack';
-// import * as LineWebhook from '../lib/line_webhook-stack';
 
 test("sanpshot test", () => {
     const app = new cdk.App();
