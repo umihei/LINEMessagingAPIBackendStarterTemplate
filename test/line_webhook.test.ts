@@ -14,7 +14,7 @@ test("sanpshot test", () => {
 
 })
 
-test("lambda fine-grained: exit lambda function and function has environment variables", () => {
+test("lambda fine-grained: exist lambda function and function has environment variables", () => {
     const app = new cdk.App();
     const stack = new LineWebhookStack(app, "TestStack");
     const template = Template.fromStack(stack);
@@ -37,5 +37,16 @@ test("lambda fine-grained: exit lambda function and function has environment var
             }
         }
     )
+
+})
+
+test("apigw exist?", () => {
+    const app = new cdk.App();
+    const stack = new LineWebhookStack(app, "TestStack");
+    const template = Template.fromStack(stack);
+
+    template.hasResourceProperties("AWS::ApiGateway::RestApi", {
+        Name: "lineWebhookEndpoint"
+    })
 
 })
