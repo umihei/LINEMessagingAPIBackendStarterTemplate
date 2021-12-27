@@ -1,5 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
-import { Template } from 'aws-cdk-lib/assertions';
+import { Capture, Template } from 'aws-cdk-lib/assertions';
 import { LineWebhookStack } from '../lib/line_webhook-stack';
 // import * as LineWebhook from '../lib/line_webhook-stack';
 
@@ -15,21 +15,28 @@ test("sanpshot test", () => {
 
 })
 
-// // example test. To run these tests, uncomment this file along with the
-// // example resource in lib/line_webhook-stack.ts
-// test('Lambda created', () => {
-// //   const app = new cdk.App();
-// //     // WHEN
-// //   const stack = new LineWebhook.LineWebhookStack(app, 'MyTestStack');
-// //     // THEN
-// //   const template = Template.fromStack(stack);
+test("lambda fine-grained: exit lambda function and function has environment variables", () => {
+    const app = new cdk.App();
+    const stack = new LineWebhookStack(app, "TestStack");
+    const template = Template.fromStack(stack);
+    const envCapture = new Capture();
+    template.hasResourceProperties("AWS::Lambda::Function",
+        {
+            Environment: envCapture
+        });
 
-// //   template.hasResourceProperties('AWS::SQS::Queue', {
-// //     VisibilityTimeout: 300
-// //   });
+    expect(envCapture.asObject()).toEqual(
+        {
+            Variables: {
+                CHANNEL_ACCESSTOKEN: {
+                    Ref: "ChannelIDParameter"
+                },
+                CHANNEL_SECRET: {
+                    Ref: "ChannelSecretParameter"
+                },
+                AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
+            }
+        }
+    )
 
-//     const stack = new cdk.Stack();
-
-//     new LineWebhookStack(stack, 'TestConstruct')
-//     expect(SynthUtil)
-// });
+})
