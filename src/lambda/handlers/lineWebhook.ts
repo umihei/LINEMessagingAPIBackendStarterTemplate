@@ -1,6 +1,7 @@
 import { Client, TextEventMessage, MessageEvent, WebhookRequestBody } from '@line/bot-sdk';
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 
+// LINEのAPIを実行するClientを定義
 const client = new Client({
     channelAccessToken: process.env.CHANNEL_ACCESSTOKEN!,
     channelSecret: process.env.CHANNEL_SECRET
